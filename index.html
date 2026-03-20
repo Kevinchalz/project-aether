@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Aether</title>
+  <link rel="icon" type="image/png" href="logo_final.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080000;
+      --accent: #e50000;
+      --accent2: #ff4400;
+      --white: #f0f0f0;
+      --muted: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Raleway', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(to bottom, rgba(5,5,8,0.95), transparent);
+    }
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('photo6.jpg');
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(0.35) saturate(0.8);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, var(--bg) 80%);
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(229,0,0,0.18), transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+    .hero-title span {
+      display: block;
+      background: linear-gradient(135deg, #fff 40%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .hero-cta {
+      margin-top: 3rem;
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.2em;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    .hero-cta:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 2rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-img {
+      position: relative;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: 2px;
+      filter: saturate(0.7) contrast(1.1);
+    }
+    .about-img::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 2px;
+      z-index: -1;
+    }
+    .about-text p {
+      color: #aaa;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ─── MUSIC ─── */
+    #music { text-align: center; }
+    .soundcloud-embed {
+      margin-top: 2rem;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(168,85,247,0.1);
+    }
+    iframe { border: none; display: block; }
+
+    /* ─── GALLERY ─── */
+    #gallery .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      filter: saturate(0.6) contrast(1.1);
+      transition: filter 0.3s;
+    }
+    .gallery-grid img:hover { filter: saturate(1) contrast(1); }
+
+    /* ─── BOOKING ─── */
+    #booking {
+      text-align: center;
+      padding: 6rem 3rem;
+      background: linear-gradient(to bottom, var(--bg), #0d0510, var(--bg));
+    }
+    #booking .section-title { margin-bottom: 1rem; }
+    #booking p {
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+    }
+    .booking-btn {
+      display: inline-block;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+    .booking-btn:hover { opacity: 0.85; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 3rem;
+      border-top: 1px solid #111;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ─── PARTICLES (pure CSS) ─── */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      animation: float linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #about { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .hero-title { font-size: clamp(2.5rem, 15vw, 5rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo"><img src="logo_final.png" alt="Project Aether" style="height:40px;vertical-align:middle;"></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#music">Music</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#spotify">Spotify</a>
+      <a href="#booking">Booking</a>
+      <a href="https://www.instagram.com/projectbyaether" target="_blank">Instagram</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <p class="hero-tag">DJ · Producer · Performer</p>
+      <h1 class="hero-title">
+        <span>Project</span>
+        <span>Aether</span>
+      </h1>
+      <p class="hero-subtitle">Feel the atmosphere</p>
+      <a href="#booking" class="hero-cta">Book Now</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="about-img">
+      <img src="photo1.jpg" alt="Project Aether" />
+    </div>
+    <div class="about-text">
+      <p class="section-label">About</p>
+      <h2 class="section-title">The Sound of Space</h2>
+      <p>Named after the forgotten fifth element — the invisible force that fills the space between stars — <strong>Project Aether</strong> exists where music meets the cosmos.</p>
+      <p>Born in Coimbatore, Tamil Nadu, India, Kevin Charles grew up where rhythm runs deep. From the streets of South India to the clubs of St. Petersburg, Florida — his journey is written in basslines and beats. A Bachelor's in Computer Science from Coimbatore, a Master's in Cybersecurity in the United States — a mind built for systems, turned toward sound.</p>
+      <p>Trained at <strong>Beat Music Academy</strong>, Project Aether has performed at some of St. Pete's most celebrated venues — <strong>Red Thread</strong>, <strong>Jannus Live</strong>, <strong>Saigon Blonde</strong>, <strong>The Estate</strong>, and beyond. His sound moves across genres but lives in the space between: tech house, minimal house, open-format — always cinematic, always intentional.</p>
+      <p>Every Project Aether set is a journey — the dancefloor becomes a universe, and for those few hours, you float in the aether.</p>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Performances</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Venues</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Energy</div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;">
+        <p style="font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;">Performed At</p>
+        <p style="color:#aaa;font-size:0.9rem;line-height:2;">Red Thread &nbsp;·&nbsp; Jannus Live &nbsp;·&nbsp; Saigon Blonde &nbsp;·&nbsp; The Estate</p>
+        <p style="color:#666;font-size:0.8rem;margin-top:0.5rem;letter-spacing:0.1em;">St. Petersburg, Florida</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Music -->
+  <section id="music" style="max-width:900px">
+    <p class="section-label" style="text-align:center">Music</p>
+    <h2 class="section-title" style="text-align:center">Listen</h2>
+    <div class="soundcloud-embed">
+      <iframe
+        width="100%"
+        height="300"
+        src="https://w.soundcloud.com/player/?url=https%3A//on.soundcloud.com/qYR5ZXijrod6j7zdxC&color=%23e50000&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+        allow="autoplay">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" style="max-width:900px">
+    <p class="section-label">Gallery</p>
+    <h2 class="section-title">Moments</h2>
+    <div class="gallery-grid">
+      <img src="photo3.jpg" alt="Project Aether" />
+      <img src="photo4.jpg" alt="Project Aether" />
+      <img src="photo5.jpg" alt="Project Aether" />
+      <img src="photo6.jpg" alt="Project Aether" />
+      <img src="gig1.jpg" alt="Project Aether on the decks" style="aspect-ratio:16/9; grid-column: span 2;" />
+      <img src="gig2.jpg" alt="Project Aether performing" style="aspect-ratio:16/9; grid-column: span 2;" />
+    </div>
+  </section>
+
+  <!-- Spotify -->
+  <section id="spotify" style="max-width:900px; text-align:center">
+    <p class="section-label" style="text-align:center">Spotify</p>
+    <h2 class="section-title" style="text-align:center">On Repeat</h2>
+    <div class="soundcloud-embed">
+      <iframe
+        src="https://open.spotify.com/embed/user/kevincharles0404?utm_source=generator&theme=0"
+        width="100%"
+        height="380"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking" style="max-width:100%">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Book Project Aether</h2>
+    <p>Available for clubs, private events, festivals, and corporate events.<br>Reach out to discuss your event.</p>
+    <a href="mailto:projectbyaetherofficial@gmail.com" class="booking-btn">Get in Touch</a>
+    <a href="https://www.instagram.com/projectbyaether" target="_blank" class="booking-btn" style="margin-left:1rem; background:transparent; border-color:#888; color:#888;">Instagram</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Project Aether · All Rights Reserved</p>
+    <p style="margin-top:0.5rem;"><a href="https://www.instagram.com/projectbyaether" target="_blank" style="color:#555;text-decoration:none;letter-spacing:0.2em;">@projectbyaether</a></p>
+  </footer>
+
+  <script>
+    // Generate particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDuration = (8 + Math.random() * 15) + 's';
+      p.style.animationDelay = (Math.random() * 15) + 's';
+      p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+      p.style.opacity = Math.random() * 0.5;
+      if (Math.random() > 0.5) p.style.background = '#ff4400';
+      container.appendChild(p);
+    }
+  </script>
+</body>
+</html>

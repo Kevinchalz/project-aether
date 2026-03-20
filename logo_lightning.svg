@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="500" height="200">
+  <defs>
+    <filter id="redGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="textClip">
+      <text x="250" y="138"
+        font-family="'Arial Black', 'Impact', sans-serif"
+        font-weight="900"
+        font-size="100"
+        letter-spacing="6"
+        text-anchor="middle"
+        transform="skewX(-8)">AETHER</text>
+    </clipPath>
+  </defs>
+
+  <rect width="500" height="200" fill="#000000"/>
+
+  <!-- Main text -->
+  <text x="250" y="138"
+    font-family="'Arial Black', 'Impact', sans-serif"
+    font-weight="900"
+    font-size="100"
+    letter-spacing="6"
+    text-anchor="middle"
+    fill="#e50000"
+    transform="skewX(-8)"
+    filter="url(#redGlow)">AETHER</text>
+
+  <!-- Dark slash mask (black knife cut through text) -->
+  <polygon points="220,20 234,20 280,180 266,180"
+    fill="#000000"/>
+
+  <!-- Lightning bolt outline (white-hot edge on the slash) -->
+  <line x1="226" y1="20" x2="272" y2="180"
+    stroke="#ffffff"
+    stroke-width="1.2"
+    opacity="0.9"
+    filter="url(#redGlow)"/>
+  <line x1="228" y1="20" x2="274" y2="180"
+    stroke="#ff4400"
+    stroke-width="0.5"
+    opacity="0.6"/>
+
+  <!-- PROJECT small text above -->
+  <text x="250" y="28"
+    font-family="Arial, sans-serif"
+    font-weight="400"
+    font-size="11"
+    letter-spacing="14"
+    text-anchor="middle"
+    fill="#666">PROJECT</text>
+</svg>
